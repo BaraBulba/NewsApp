@@ -3,6 +3,8 @@ package android.example.newsapp.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 @Entity(
     tableName = "articles"

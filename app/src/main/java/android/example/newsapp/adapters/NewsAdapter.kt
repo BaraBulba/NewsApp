@@ -2,15 +2,23 @@ package android.example.newsapp.adapters
 
 import android.example.newsapp.R
 import android.example.newsapp.models.Article
+import android.example.newsapp.util.Utils
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import java.text.SimpleDateFormat
+import java.time.ZoneId
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
@@ -45,16 +53,18 @@ class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
         )
     }
 
+    val utils = Utils()
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         val article = differ.currentList[position]
         holder.itemView.apply {
             Glide.with(this)
                 .load(article.urlToImage)
                 .into(holder.ivAvatarImage)
-            holder.tvSource.text = article.source.name
+            holder.tvSource.text = article.source.name.lowercase()
             holder.tvTitle.text = article.title
             holder.tvDescription.text = article.description
-            holder.tvPublishedAt.text = article.publishedAt
+            holder.tvPublishedAt.text = utils.DateFormat(article.publishedAt)
+
             setOnClickListener{
                 onItemClickListener?.let {
                     it(article)
