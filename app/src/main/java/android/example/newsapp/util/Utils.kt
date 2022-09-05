@@ -24,7 +24,7 @@ class Utils {
 //        return isTime
 //    }
 
-    fun DateFormat (oldStringDate: String?): String? {
+    fun  DateFormat (oldStringDate: String?): String? {
         val newDate: String?
         val dateFormat = SimpleDateFormat("E, d MMM yyyy", Locale.ENGLISH)
         newDate = try {
