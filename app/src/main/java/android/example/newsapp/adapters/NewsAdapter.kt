@@ -60,7 +60,7 @@ class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
             Glide.with(this)
                 .load(article.urlToImage)
                 .into(holder.ivAvatarImage)
-            holder.tvSource.text = article.source.name.lowercase()
+            holder.tvSource.text = article.source?.name?.lowercase()
             holder.tvTitle.text = article.title
             holder.tvDescription.text = article.description
             holder.tvPublishedAt.text = utils.DateFormat(article.publishedAt)

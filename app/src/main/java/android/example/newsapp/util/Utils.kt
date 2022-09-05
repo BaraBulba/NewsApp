@@ -28,7 +28,7 @@ class Utils {
         val newDate: String?
         val dateFormat = SimpleDateFormat("E, d MMM yyyy", Locale.ENGLISH)
         newDate = try {
-            val date: Date = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").parse(oldStringDate)
+            val date = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").parse(oldStringDate)
             dateFormat.format(date)
         } catch (e: ParseException) {
             e.printStackTrace()

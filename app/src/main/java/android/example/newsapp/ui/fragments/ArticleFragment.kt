@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.snackbar.Snackbar
 
 
 class ArticleFragment : Fragment(R.layout.fragment_article) {
@@ -37,7 +38,12 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
         binding.webView.apply {
             // Убеждаемся, что загрузка будет в текущем веб вью, а не откроется браузер телефона
             webViewClient = WebViewClient()
-            loadUrl(article.url)
+            loadUrl(article.url!!)
+        }
+
+        binding.fab.setOnClickListener{
+            viewModel.saveArticle(article = article)
+            Snackbar.make(view, "Article saved successfully", Snackbar.LENGTH_SHORT).show()
         }
     }
 
