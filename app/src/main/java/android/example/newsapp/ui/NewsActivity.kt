@@ -21,7 +21,9 @@ class NewsActivity : AppCompatActivity() {
 
         // Лучше инициализировать вью модель перед биндингом, т.к. будет выскакивать ошибка
         val newsRepository = NewsRepository(ArticleDatabase(this))
-        val viewModelProviderFactory = NewsViewModelProviderFactory(newsRepository = newsRepository)
+        val viewModelProviderFactory = NewsViewModelProviderFactory(
+            newsRepository = newsRepository,
+            app = application)
         viewModel = ViewModelProvider(this,viewModelProviderFactory)
             .get(NewsViewModel::class.java)
 
